@@ -3,13 +3,15 @@
 
 ### 优化问题的形式
 - **目标问题**：
+$$
 \[
 \begin{aligned}
 \text{minimize} \quad & f(x) \\
 \text{subject to} \quad & h_i(x) \leq 0, \quad i = 1, \ldots, m \\
 & l_j(x) = 0, \quad j = 1, \ldots, r
 \end{aligned}
-\]
+\] 
+$$
 - 这里的目标是最小化一个可微分函数 \( f(x) \)，同时需要满足多种不等式约束 \( h_i(x) \) 和等式约束 \( l_j(x) \)。
 
 ### 凸性
