@@ -465,3 +465,70 @@ But increasing k reduces data granularity/utility. Key principle is balancing pr
 在原始数据的基础上施加一些合理的统计噪声,使数据产生一定程度的扭曲,从而掩盖一些信息。
 
 这些策略的使用需要根据具体数据集和隐私要求进行权衡,以达到较好的匿名效果和数据效用之间的平衡。
+好的,我将继续详细讲解并翻译下一部分内容:
+
+Secure Multi-Party Computation (安全多方计算)
+
+Secure multi-party computation (MPC) allows multiple parties to jointly compute a function over their inputs while keeping those inputs private.
+
+安全多方计算(MPC)允许多方基于各自的输入共同计算一个函数,同时确保每一方的输入对其他方保密。
+
+For example, consider 4 parties P1, P2, P3, P4 with private inputs X1, X2, X3, X4 respectively. They want to compute the sum X1 + X2 + X3 + X4 without revealing their individual inputs.
+
+例如,考虑4个参与方P1、P2、P3、P4,他们分别持有私有输入X1、X2、X3、X4。他们想要计算X1 + X2 + X3 + X4的和,但不想泄露各自的输入值。
+
+The MPC protocol works as follows:
+MPC协议的工作流程如下:
+
+1) Each party splits their input into 4 random shares and sends one share to every other party.
+1) 每一方将自己的输入拆分为4份随机份额,并将一份发送给其他每一方。
+
+例如 P1 将 X1=100 拆分为 20, 30, 40, 10 并分别发送给 P2, P3, P4。
+
+2) Each party locally sums the shares they received to get the sum.
+2) 每一方在本地将收到的份额求和,得到最终的总和。
+
+P1 gets sum = 20 + (-30) + 15 + 20 = 75
+P2 gets sum = 20 + 30 + 15 + 20 = 85  
+...
+
+3) The sum is the same for all parties, but no party knows the individual inputs!
+3) 所有参与方得到的总和相同,但任何一方都不知道其他方的输入值!
+
+MPC enables privacypreserving analysis by computing over data kept private. Downsides are coordination overhead and potential for dishonest participants.
+
+MPC支持了基于隐私数据的隐私保护分析。缺点是需要参与方协调带来的开销,以及可能存在不诚实参与方的风险。
+
+Data Provenance (数据出处)
+
+When a decision maker receives data mining results indirectly or from an untrusted source, they need to assess the credibility and derivation history of the results.
+
+当决策者从间接或不可信的来源获得数据挖掘结果时,他们需要评估这些结果的可信度和形成过程。
+
+Data provenance refers to metadata describing the origin, transformations and movements of data, to determine its credibility.
+
+数据出处是指描述数据来源、转换和移动的元数据,用于确定其可信度。
+
+Approaches for evaluating data provenance include:
+评估数据出处的方法包括:
+
+1) Legal contracts prohibiting unauthorized sharing
+1) 通过法律合同禁止未经授权的共享
+
+2) Applying web credibility analysis techniques:
+2) 应用网络信息可信度分析技术:
+
+- Authority - Unclear real author indicates low credibility
+   权威性 - 真实作者不明表明可信度低  
+- Accuracy - Lack of accurate facts indicates untrustworthiness
+   准确性 - 缺乏准确事实表明不可信
+- Objectivity - Bias indicates potential disinformation
+   客观性 - 偏袒表明可能存在虚假信息
+- Currency - Outdated/missing source metadata 
+   时效性 - 过时/缺失的源元数据
+- Coverage - Lack of references to related information
+   覆盖面 - 缺乏对相关信息的引用
+
+The key is enabling proper verification of data provenance to judge analysis credibility.
+
+关键是启用适当的数据出处验证,以判断分析结果的可信度。
